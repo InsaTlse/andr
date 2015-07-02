@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>App Insa Alpha 1</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />		
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		<!--<script src="js/index.js"></script>-->	
+		<script src="cordova.js"></script>
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+	
+		<!--<script src="cordova_plugins.js"></script>-->
+		<script>
+			$.support.cors = true;
+			$.mobile.allowCrossDomainPages = true;
+			$.mobile.phonegapNavigationEnable = true;
+			
+			
+		</script>
+
+	</head>
+	<body>
+		<div data-role="page" id="wifi_page"  data-theme="b">
+			
+			<header data-role="header" data-position="fixed">
+				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<h1>Connexion Wi-Fi</h1>
+				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+			</header>
+			
+			<section data-role="content">
+				
+				<p>L'INSA déploie depuis 2007 des bornes Wifi dans la majorité des bâtiments</p>
+				<p>
+				4 réseaux sont diffusés sur le campus :
+<ul>
+<li> eduroam :  accés dédié à  des invités d'autres établissements, membres du projet Eduroam</li>
+<li>InviteINSA : accés limités, dédié principalement aux invités de passage à l'INSA</li>
+<li>PersonnelINSA et EtudiantINSA  : personnel enseignant ou non, étudiant de notre établissement, régulièrement inscrit sur nos serveurs.</li>
+
+<h3>Documentation</h3>
+Retouvez la documentation du CSN sur : 
+<a href="#" onclick="window.open('https://docinfo.insa-toulouse.fr', '_blank','location=yes')('',{ openExternal:true })">http://docinfo.insa-toulouse.fr</a>			
+				</p>
+				
+			</section>
+			<!-- /panel -->
+			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b">
+				<div class="ui-panel-inner">
+					<ul data-role="listview" style="z-index=-100" >
+						<li class="listview_title">Aller à la rubrique..</li>
+						<li data-icon="home2"><a href="index.html" class="ajaxed">Accueil</a></li>
+						<li data-icon="ecole"><a href="pres.html" class="ajaxed">Votre école</a></li>
+						<li data-icon="rss"><a href="actu.html" class="nonajaxed">Actualités</a></li>
+						<li data-icon="edt"><a href="edt.html" class="ajaxed">Emploi du Temps</a></li>
+						<li data-icon="sun"><a href="meteo.html" class="ajaxed">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" class="ajaxed">Menu Self</a></li>
+						<li data-icon="reseau"><a href="facebook.html" class="ajaxed">Réseaux Sociaux</a></li>
+						<li data-icon="plan"><a href="plan.html" class="ajaxed">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" class="ajaxed">Bib'INSA</a></li>
+						<li data-icon="wifi"><a href="wifi.html" class="ajaxed">WiFi</a></li>
+						<li data-icon="phone"><a href="contact.html" class="ajaxed">Contact</a></li>
+						<li data-icon="info"><a href="about.html" class="ajaxed">A propos</a></li>
+					</ul>
+				</div>
+			</div>
+		<script>
+		$('#wifi_page').on('pagecreate',function(){
+			//NAVIGATION
+			var currentpage = $(this);
+			$('#home_button, #panel_button', currentpage).on('click',function(e){
+				e.preventDefault();
+			});
+			$('#home_button',currentpage).off('vclick').on('vclick',function(e){
+				$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{reverse:true});
+			});
+			
+			$('#panel_button',this).off('vclick').on('vclick',function(e){
+				$('#right-panel',currentpage).panel( "open" );
+			});
+			$('#right-panel .ui-listview > li > a.ui-btn',currentpage).on('click',function(e){
+					e.preventDefault();
+			});
+			
+			$('#right-panel .ui-listview > li > a.ui-btn.ajaxed',currentpage).off('vclick').on('vclick',function(e){									
+				$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'), { transition: "flow"});
+			});
+			$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
+				window.location.href = $(this).attr('href');
+			});
+		});
+		</script>
+
+		</div>
+		
+	</body>
+</html>

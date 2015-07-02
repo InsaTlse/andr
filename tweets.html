@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>App Insa Alpha 1</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />		
+		<meta name="viewport" content="width=device-width, user-scalable=no" />
+		
+		<link rel="stylesheet" href="js/jquery.mobile-1.4.2.css" />
+		<link rel="stylesheet" href="css/custom.css" />
+		<!--<script src="js/index.js"></script>-->	
+		<script src="cordova.js"></script>
+		<script src="js/jquery-2.1.0.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		<script src="js/jquery.ui.map.full.min.js"></script>
+		
+		<!--<script src="cordova_plugins.js"></script>-->
+		<script>
+			$.support.cors = true;
+			$.mobile.allowCrossDomainPages = true;
+			$.mobile.phonegapNavigationEnable = true;
+			
+			
+		</script>
+		
+	</head>
+	<body>
+		<div data-role="page" id="tweets_page" data-theme="b" data-dom-cache="true" >
+			
+			<header data-role="header" data-position="fixed" >
+				<a href="index.html" id="home_button" data-icon="gohome" data-role="button" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false" data-transition="pop" data-direction="reverse">Retour</a>
+				<h1 style="color:#2aa9e0"><img style="height:1.2em; margin-bottom:-0.2em" src="img/icons/twitter_blue.svg" /> Twitter</h1>
+				<a id="panel_button" data-icon="menudvp" data-iconpos="notext" class="big-btn ui-nodisc-icon big-icon" data-corners="false">Menu</a>
+			</header>
+			
+			<section data-role="content" style="text-align:center;padding:0;" >
+				<style type="text/css">
+					#tweets_page {
+						height: 80%;
+					}
+					
+					section {
+						
+						height:100%;
+					}
+					#twitter-widget-0{
+						
+						width:90%;
+						
+						min-height:98%;
+						
+						
+						
+					}
+				</style>
+				<a data-chrome="noscrollbar transparent" class="twitter-timeline" href="https://twitter.com/INSAToulouse" data-widget-id="431449495746785282"><br /><br /><img  src="js/images/ajax-loader.gif" /></a>
+				<script>
+				
+				$('#tweets_page').on('pagecreate', function() {
+					if (window.twttr) {
+						twttr.widgets.load();
+					} else {
+						!function(d,s,id){
+							var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+							if(!d.getElementById(id)){
+								js=d.createElement(s);
+								js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+								fjs.parentNode.insertBefore(js,fjs);
+							}
+						}
+						(document,"script","twitter-wjs");
+						
+						
+					}
+					/*$( "#tweets_page" ).on( "swipeleft", function() {
+					
+						// We check if there is no open panel on the page because otherwise
+						// a swipe to close the left panel would also open the right panel (and v.v.).
+						// We do this by checking the data that the framework stores on the page element (panel: open).
+						if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+							
+								$( "#right-panel" ).panel( "open" );
+							
+						}
+					});	*/
+						
+				});
+				
+				</script>
+			
+			</section>
+			
+			<footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+				<div data-role="navbar">
+					<ul>
+					
+						<li ><a href="facebook.html" id="fb_btn" class="white-bottom-nav"><img style="height:44px" src="img/icons/facebook.svg"></a></li>
+						<li ><a class="white-bottom-nav" href="#" onclick="navigator.app.loadUrl('http://www.youtube.com/user/InsaToulouse',{ openExternal:true })" ><img style="height:44px" src="img/icons/youtube.svg"></a></li>
+						<!--<li><a href="#" onclick="navigator.app.loadUrl('http://www.linkedin.com/groups/INSA-de-Toulouse-1853952?trk=myg_ugrp_ovr',{ openExternal:true })" class="ui-nodisc-icon no-radius big-icon" data-icon="linkedin"></a></li>
+						<li><a href="#" onclick="navigator.app.loadUrl('http://www.viadeo.com/groups/?containerId=0021q19whauziley',{ openExternal:true })" class="ui-nodisc-icon no-radius big-icon" data-icon="viadeo"></a></li>
+					-->
+					</ul>
+				</div><!-- /navbar -->
+			
+			</footer>
+			<!-- /panel -->
+			<div data-role="panel" id="right-panel" data-position-fixed="true" data-position="right" data-display="overlay" data-theme="b">
+				<div class="ui-panel-inner">	
+					<ul data-role="listview" style="z-index=-100" >
+						<li class="listview_title">Aller à la rubrique..</li>
+						<li data-icon="home2"><a href="index.html" class="ajaxed">Accueil</a></li>
+						<li data-icon="ecole"><a href="pres.html" class="ajaxed">Votre école</a></li>
+						<li data-icon="rss"><a href="actu.html" class="nonajaxed">Actualités</a></li>
+						<li data-icon="edt"><a href="edt.html" class="ajaxed">Emploi du Temps</a></li>
+						<li data-icon="sun"><a href="meteo.html" class="ajaxed">Météo</a></li>
+						<li data-icon="cutlery"><a href="ru.html" class="ajaxed">Menu Self</a></li>
+						<li data-icon="reseau"><a href="facebook.html" class="ajaxed">Réseaux Sociaux</a></li>
+						<li data-icon="plan"><a href="plan.html" class="ajaxed">Plan d'accès</a></li>
+						<li data-icon="book"><a href="bib.html" class="ajaxed">Bib'INSA</a></li>
+						<li data-icon="wifi"><a href="wifi.html" class="ajaxed">WiFi</a></li>
+						<li data-icon="phone"><a href="contact.html" class="ajaxed">Contact</a></li>
+						<li data-icon="info"><a href="about.html" class="ajaxed">A propos</a></li>
+					</ul>
+				</div>
+			</div>
+		<script>
+			
+			$("#tweets_page").on('pagecreate', function() {
+				
+					
+				//NAVIGATION
+				var currentpage = $(this);
+				$('#home_button, #panel_button', currentpage).on('click',function(e){
+					e.preventDefault();
+				});
+				$('#home_button',currentpage).off('vclick').on('vclick',function(e){
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{reverse:true});
+				});
+				
+				$('#panel_button',this).off('vclick').on('vclick',function(e){
+					$('#right-panel',currentpage).panel( "open" );
+				});
+				$('#right-panel .ui-listview > li > a.ui-btn',currentpage).on('click',function(e){
+					e.preventDefault();
+				});
+				
+				$('#right-panel .ui-listview > li > a.ui-btn.ajaxed',currentpage).off('vclick').on('vclick',function(e){									
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'), { transition: "flow"});
+				});
+				$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
+					window.location.href = $(this).attr('href');
+				});
+				
+				$('#fb_btn', currentpage).on('click',function(e){
+					e.preventDefault();
+				});
+				$('#fb_btn',currentpage).off('vclick').on('vclick',function(e){
+					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{transition:"fade"});
+				});
+				
+			});
+		</script>
+
+		</div>
+		
+	</body>
+</html>
