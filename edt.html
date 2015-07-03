@@ -208,7 +208,7 @@ function displayAde(groupe,next){
 					var json_list = null;
 					
 					//récupere la liste des groupes
-					$.getJSON('wsAdeGrp.php?projectId=1').done(function(data,status){
+					$.getJSON('http://m.insa-toulouse.fr/wsAdeGrp.php?projectId=1').done(function(data,status){
 					
 						json_list = data;
 						//remplissage du select par les groupes
