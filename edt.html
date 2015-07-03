@@ -145,7 +145,7 @@ function displayAde(groupe,next){
 	//vide le tableau d'emploi du temps
 	$('#movie-table').html('');
 	//charge le nouveau tableau d'emploi du temps distant
-	$('#movie-table').load('wsAde.php?&id='+groupe+'&to='+next_param+'&projectId=1', function( response, status, xhr ) {
+	$('#movie-table').load('http://m.insa-toulouse.fr/wsAde.php?&id='+groupe+'&to='+next_param+'&projectId=1', function( response, status, xhr ) {
 		if(!$(response).find('.title').length){
 			$('#movie-table').html('<tr><td style="text-align:center">Pas de cours trouvé ce jour</td></tr>');
 		}
