@@ -53,7 +53,7 @@
 						<li data-icon="edt"><a href="edt.html" class="ajaxed">Emploi du Temps</a></li>
 						<li data-icon="sun"><a href="meteo.html" class="ajaxed">Météo</a></li>
 						<li data-icon="cutlery"><a href="ru.html" class="ajaxed">Menu Self</a></li>
-						<li data-icon="reseau"><a href="facebook.html" class="ajaxed">Réseaux Sociaux</a></li>
+						<li data-icon="reseau"><a href="tweets.html" class="ajaxed">Réseaux Sociaux</a></li>
 						<li data-icon="plan"><a href="plan.html" class="ajaxed">Plan d'accès</a></li>
 						<li data-icon="book"><a href="bib.html" class="ajaxed">Bib'INSA</a></li>
 						<li data-icon="wifi"><a href="wifi.html" class="ajaxed">WiFi</a></li>
@@ -96,7 +96,7 @@
 				
 				
 				//Récupère le flux d'actu distant
-				$.get('http://m.insa-toulouse.fr/rss.php', function(data){
+				$.get('http://www.insa-toulouse.fr/plugins/web/default/fr/filter/org.ametys.web.accueil.RSS/rss.xml', function(data){
 					var i = 1;
 					//parcours XML des noeuds "item" du flux rss
 					$(data).find('item').each(function(){
@@ -139,7 +139,7 @@
 						var content = '<li class="ui-li-has-thumb"><a href="#rss_page" data-transition="slide"><span class="thumb_container"><img src="'+img+'" /></span><h2>'+titre+'</h2><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+'</small>'+main_content+'</p></a></li>';
 						
 						//contenu de la page de l'actu complete
-						var newPage = '<div style="display:none" class="rss_content"><h2>'+titre+'</h2><p><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+' - '+dateArr[4]+'</small></p><p>'+description.html()+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="window.open(\''+url+'\', \'_blank\',\'location=yes\')" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';
+						var newPage = '<div style="display:none" class="rss_content"><h2>'+titre+'</h2><p><p><small>'+dateArr[1]+' '+dateArr[2]+' '+dateArr[3]+' - '+dateArr[4]+'</small></p><p>'+description.html()+'</p><p style="clear:both;text-align:right;margin-top:10px"><a style="text-decoration:none" href="#" onclick="navigator.app.loadUrl(\''+url+'\',{ openExternal:true })" rel="external" >&raquo; Voir sur le site Internet</a></p></div>';
 						//on vire le gif de chargement
 						$("#actu_page #loader").hide();
 						//on ajoute le contenu au dom
