@@ -99,14 +99,14 @@
 				$('#right-panel .ui-listview > li > a.ui-btn.nonajaxed',currentpage).off('vclick').on('vclick',function(e){									
 					window.location.href = $(this).attr('href');
 				});
-				
+			/*	
 				$('#tt_btn', currentpage).on('click',function(e){
 					e.preventDefault();
 				});
 				$('#tt_btn',currentpage).off('vclick').on('vclick',function(e){
 					$.mobile.pageContainer.pagecontainer( "change", $(this).attr('href'),{transition:"fade"});
 				});
-				
+			*/	
 				//Appel du webservice permettant de récuperer le flux d'actu facebook de l'INSA toulouse
 				$.get('http://m.insa-toulouse.fr/wsFB.php', function(data){
 					
